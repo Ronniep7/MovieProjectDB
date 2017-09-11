@@ -1,0 +1,29 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+    <link href="~/StyleSheet1.css" rel="stylesheet" />
+</head>
+
+<body>
+    <center>
+
+        <ul style="width:100%">
+            <li><a href="/Home/Index">Home</a></li>
+            <li><a id="x" href="/Movie/Index">Movie</a><ul><li><a href="/Movie/New">New Movie</a></li></ul></li> 
+            <li><a id="x" href="/Customer/Index">Customer</a><ul><li><a href="/Customer/New">New</a></li></ul></li>
+            <li><a id="x" href="/Rental/New">Rentals</a></li>
+
+         
+        </ul>
+    </center>
+
+ @RenderBody()
+   <br />
+        <p style="color:white;position:absolute;top:100%;font-size:25px;"> Tec - Career Movie Rental</p>
+    
+
+
+
+</body>
+</html>

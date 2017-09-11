@@ -1,0 +1,108 @@
+﻿
+@{
+    Layout = "~/Layout.cshtml";
+}
+
+
+
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>RentalsNew</title>
+    <style>
+        body {
+            background-image: url("/Images/open-house-1163358_1920.jpg");
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+        }
+
+        #bigdiv {
+            background-color: black;
+            opacity: 0.8;
+        }
+    </style>
+
+</head>
+<body>
+    <div id="bigdiv">
+        <br />
+        <label>Enter Customer Name:</label><span></span><input type="text" id="input1" required />
+        <br /><br />
+        <label>Enter Movie Name:</label><input type="text" id="input2" required />
+        <br /><br />
+        <button type="button" onclick="loadDoc()" style="position:absolute;left:280px;top:118px;">Submit</button><br />
+        <div id="d"><p id="p"></p></div><br />
+    </div>
+    <br />
+
+
+    <script>
+
+        function loadDoc() {
+            var customername = document.getElementById('input1');
+            var movie = document.getElementById('input2');
+            if (customername.value == "" ||
+                movie.value == "") {
+                if (customername.value == "") {
+                    document.getElementById('p').style.marginTop = '4px;';
+                    document.getElementById('p').style.backgroundColor = 'lightcoral';
+                    document.getElementById('p').style.width = '20px;';
+                    document.getElementById('p').style.color = 'red';
+                    document.getElementById('p').style.fontSize = '30px';
+                    document.getElementById('p').innerHTML = "Please Fill Customers Name";
+                }
+                else if (movie.value == "") {
+                    document.getElementById('p').style.marginTop = '4px;';
+                    document.getElementById('p').style.backgroundColor = 'lightcoral';
+                    document.getElementById('p').style.width = '20px;';
+                    document.getElementById('p').style.color = 'red';
+                    document.getElementById('p').style.fontSize = '30px';
+                    document.getElementById('p').innerHTML = "Please Fill Movie Name";
+                }
+                else {
+                    document.getElementById('p').style.marginTop = '4px;';
+                    document.getElementById('p').style.backgroundColor = 'lightcoral';
+                    document.getElementById('p').style.width = '20px;';
+                    document.getElementById('p').style.color = 'red';
+                    document.getElementById('p').style.fontSize = '30px';
+                    document.getElementById('p').innerHTML = "Please Fill In The Tabs";
+                }
+            }
+            var xhttp = new XMLHttpRequest();
+
+            xhttp.onreadystatechange = function () {
+
+                if (this.readyState === 4 && this.status === 200) {
+
+                    var jsonObj = JSON.parse(this.responseText);
+                    if (jsonObj.isfree1 == true) {
+                        document.getElementById('d').style.marginTop = '54px;';
+                        document.getElementById('d').style.backgroundColor = 'lightgreen';
+                        document.getElementById('p').style.color = 'green';
+                        document.getElementById('p').style.fontSize = '30px';
+                        document.getElementById('p').innerHTML = jsonObj.Messege1;
+                    }
+                    else {
+                        document.getElementById('d').style.marginTop = '4px;';
+                        document.getElementById('d').style.backgroundColor = 'lightcoral';
+                        document.getElementById('d').style.width = '20px;';
+                        document.getElementById('p').style.color = 'red';
+                        document.getElementById('p').style.fontSize = '30px';
+                        document.getElementById('p').innerHTML = jsonObj.Messege1;
+                    }
+
+                }
+            };
+
+            xhttp.open("POST", "/Rental/CreateNewRentals?CustomerName=" + customername.value + "&MovieName=" + movie.value);
+            xhttp.send();
+
+        }
+
+    </script>
+</body>
+</html>

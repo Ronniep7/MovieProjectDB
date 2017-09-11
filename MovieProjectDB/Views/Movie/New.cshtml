@@ -1,0 +1,85 @@
+﻿
+@{
+    Layout = "~/Layout.cshtml";
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>New</title>
+    <style>
+        body {
+            background-image: url("/Images/landscape-1328858_1920.jpg");
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+        }
+
+        #p {
+            font-size: 30px;
+            opacity: 0.8;
+        }
+
+        #p2 {
+            font-size: 30px;
+            opacity: 0.8;
+        }
+    </style>
+</head>
+<body>
+ 
+
+
+    <center>
+        <form action="MovieSave" method="post" onsubmit="return Submit()">
+            <br /><label>Please Enter A Movie:</label><br /> <input id="input1" type="text" name="Moviename" /><br />
+            <div id="p2" style="background-color:grey;">@ViewBag.NameERROR</div><br />
+            <label>Select A Category :</label><br /><select id="input2" name="CatName">
+                <option selected>Select</option>
+                <option> Action</option>
+                <option>Comedy</option>
+                <option>Romance</option>
+                <option>Family</option>
+            </select><br />
+            <br /><div id="p" style="background-color:grey;">@ViewBag.ERROR</div><br />
+
+            <button type="submit">Submit</button><br />
+
+        </form>
+    </center>
+    <script>
+           function Submit() {
+               var a = document.getElementById('input1').value;
+               var b = document.getElementById('input2').value;
+
+               if (a == "") {
+                   document.getElementById('input1').style.border = '1px solid red';
+                   document.getElementById('p2').style.backgroundColor = 'lightcoral';
+                   document.getElementById('p2').style.color = 'red';
+                   document.getElementById('p2').innerHTML = "Please Enter A Movie!!!(Client)";
+                   return false;
+               }
+               else if (b == "Select") {
+                   document.getElementById('input2').style.border = '1px solid red';
+                   document.getElementById('p').style.backgroundColor = 'lightcoral';
+                   document.getElementById('p').style.color = 'red';
+                   document.getElementById('p').innerHTML = "Please Select A Category!!!(Client)";
+                   return false;
+               }
+               else {
+                   document.getElementById('p').style.backgroundColor = 'lightgreen';
+                   document.getElementById('p').style.color = 'green';
+                   document.getElementById('p').innerHTML = "Movie Has Been Added Successfully";
+                   return true;
+               }
+
+           };
+
+
+    </script>
+
+
+</body>
+</html>

@@ -1,0 +1,98 @@
+﻿
+@{
+    Layout = "~/Layout.cshtml";
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>New</title>
+    <style>
+        body {
+            background-image: url("/Images/urban-438393_1920.jpg");
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+        }
+
+        button {
+            margin-left: 170px;
+        }
+
+        #p, #p2, #p3 {
+            font-size: 30px;
+            opacity: 0.8;
+        }
+    </style>
+</head>
+<body>
+    <form action="CustomersSave" method="post" onsubmit="return Submit()">
+        <label>Please Enter Your Name:</label><br /> <input id="input1" type="text" name="CustomerName" /><br />
+        <div id="p2" style="background-color:grey;">@ViewBag.NameEror</div><br />
+        <label>Select A Subscribe :</label><br /><select id="input3" name="SubName">
+            <option>Select</option>
+            <option>Pay As U Go</option>
+            <option>Monthly</option>
+            <option>Quarterly</option>
+            <option>Annual</option>
+        </select><br />
+        <div id="p3" style="background-color:grey;">@ViewBag.SelectEror</div><br />
+
+        <label>Age:</label><br /><input id="input2" type="number" name="CustomerAge" step="1" /><br />
+
+        <button type="submit">Submit</button>
+        <div id="p" style="background-color:grey;">@ViewBag.Eror</div><br />
+    </form>
+    <script>
+         function Submit() {
+             var nameval = document.getElementById('input1').value;
+             var ageval = document.getElementById('input2').value;
+             var selectval = document.getElementById('input3').value;
+
+             if (nameval == "") {
+                 document.getElementById('p2').style.backgroundColor = 'lightcoral';
+                 document.getElementById('p2').style.color = 'red';
+                 document.getElementById('input1').style.border = '1px solid red';
+                 document.getElementById('p2').innerHTML = "Please Enter A Name!!!(Client)";
+
+                 return false;
+             }
+             else if (selectval == "Select") {
+                 document.getElementById('p3').style.backgroundColor = 'lightcoral';
+                 document.getElementById('p3').style.color = 'red';
+                 document.getElementById('input3').style.border = '1px solid red';
+                 document.getElementById('p3').style.fontSize = '30px';
+                 document.getElementById('p3').innerHTML = "Please Select Your Subscribe (Client)";
+                 return false;
+             }
+             else if (ageval == "") {
+
+                 document.getElementById('p').style.backgroundColor = 'lightcoral';
+                 document.getElementById('p').style.color = 'red';
+                 document.getElementById('input2').style.border = '1px solid red';
+                 document.getElementById('p').innerHTML = "Please Enter Your Age!!!(Client)";
+
+                 if (ageval < 18) {
+                     document.getElementById('p').style.backgroundColor = 'lightcoral';
+                     document.getElementById('p').style.color = 'red';
+                     document.getElementById('input2').style.border = '1px solid red';
+                     document.getElementById('p').innerHTML = "U need To Be Older Then 18!!!(Client)";
+                     return false;
+                 }
+                 return false;
+             }
+             else {
+                 document.getElementById('p').style.backgroundColor = 'green';
+                 document.getElementById('p').style.color = 'green';
+                 document.getElementById('p').innerHTML = "Client Has Been Added Successfully";
+                 return true;
+             }
+         };
+
+
+    </script>
+
+</body>
+</html>

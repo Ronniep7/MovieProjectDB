@@ -1,0 +1,44 @@
+﻿@using MovieProjectDB.Models
+@model IEnumerable<Customer>
+@{
+    Layout = "~/Layout.cshtml";
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Index</title>
+    <style>
+        body {
+            background-image: url("/Images/urban-438393_1920.jpg");
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+        }
+    </style>
+
+</head>
+<body>
+    <table>
+        <tr>
+            <th>Name</th>
+            <th>Subscription</th>
+            <th>Age</th>
+        </tr>
+        @foreach (Customer item in Model)
+        {
+            <tr>
+                <td>@item.Name</td>
+                <td>@item.Subscription</td>
+                <td>@item.Age</td>
+            </tr>
+        }
+
+
+
+
+    </table>
+</body>
+</html>
